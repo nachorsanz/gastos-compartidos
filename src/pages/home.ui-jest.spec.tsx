@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom/extend-expect';
-import React from 'react'
+import React from 'react';
 import Home from './Home';
 import { render, screen } from '@testing-library/react';
 
