@@ -2,12 +2,12 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom/extend-expect';
-import Home from './Home';
+import Layout from './layout-component';
 import { render} from '@testing-library/react';
 
 describe('Home', () => {
   it('should render', () => {
-    const { getByTestId } = render(<Home />);
-    expect(getByTestId('home')).toBeInTheDocument();
+    const { getByTestId } = render(<Layout />);
+    expect(getByTestId('layout')).toBeInTheDocument();
   });
 });
