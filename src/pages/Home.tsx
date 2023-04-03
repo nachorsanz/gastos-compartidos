@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 
-function Home() {
+
+const Home = () => {
   return <div data-testid="home"></div>;
-}
+};
 
 export default Home;

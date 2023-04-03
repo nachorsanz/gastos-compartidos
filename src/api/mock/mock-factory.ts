@@ -4,7 +4,7 @@ export const createMockUser = (): UserType => {
   return {
     id: '1',
     name: 'John Doe',
-    email: 'jhondoe@mail.com',
+    email: 'johndoe@mail.com',
     group: ['1'],
   };
 };
@@ -13,7 +13,7 @@ export const createMockUsersGroup = (): UserGroupType => {
   return [
     {
       id: '1',
-      name: 'jhondoe@mail.com',
+      name: 'johndoe@mail.com',
       email: '',
       group: ['1'],
     },
