@@ -23,6 +23,9 @@ jobs:
         run: yarn test:unit
 
       - name: UI-Unit Tests (using React-Testing Lib)
+        env:
+          API_URL: ${{ env.VITE_API_SUPABASE_URL' }} # Puedes definir esta variable como env para que sea accesible desde tus tests
+          API_KEY: ${{ env.VITE_API_SUPABASE_KEY' }}
         run: yarn test:ui-jest
   deploy:
     name: 'Deploy'
