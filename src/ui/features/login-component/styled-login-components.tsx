@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
-
 export const LoginContainer = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +18,6 @@ export const LogoContainer = styled.div`
 
 export const LogoIcon = styled.img`
   width: 200px;
-
 `;
 
 export const LoginForm = styled.form`

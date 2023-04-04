@@ -12,18 +12,17 @@ const LoginPageContainer = styled.div`
 `;
 
 const LoginPage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const onLogin = (email: string, password: string) => {
     const loggedUser = createUser({ email, password });
     loggedUser.then((user) => {
-        if (user.user) navigate('/home')
-
-      });
+      if (user.user) navigate('/home');
+    });
   };
 
   return (
     <LoginPageContainer data-testid="login">
-        <Login onLogin={onLogin} />
+      <Login onLogin={onLogin} />
     </LoginPageContainer>
   );
 };

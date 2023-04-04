@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import Logo from '/logo.png';
-import { Input, LoginContainer, LoginForm, LogoContainer, LogoIcon, SubmitButton } from './styled-login-components';
+import {
+  Input,
+  LoginContainer,
+  LoginForm,
+  LogoContainer,
+  LogoIcon,
+  SubmitButton,
+} from './styled-login-components';
 
 interface LoginProps {
   onLogin: (email: string, password: string) => void;
 }
-
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [email, setEmail] = useState<string>('');
@@ -17,9 +23,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <LoginContainer data-testid='login-component'>
+    <LoginContainer data-testid="login-component">
       <LogoContainer>
-        <LogoIcon src={Logo}/>
+        <LogoIcon src={Logo} />
       </LogoContainer>
       <LoginForm onSubmit={handleSubmit}>
         <Input
@@ -36,7 +42,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         />
         <SubmitButton type="submit">Log in</SubmitButton>
       </LoginForm>
-
     </LoginContainer>
   );
 };

@@ -3,8 +3,14 @@ export type PaymentType = {
   userId: string;
   description: string;
   amount: number;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: string;
 };
 
 export type PaymentGroupType = PaymentType[];
+
+export type PaymentGroupMembersType = {
+  name: string;
+  members: string[];
+  balance: number;
+  createdAt: string;
+};
