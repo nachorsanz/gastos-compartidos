@@ -3,7 +3,7 @@
  */
 import '@testing-library/jest-dom/extend-expect';
 import UserPanel from './user-panel';
-import { render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 describe('Home', () => {
   it('should render', () => {

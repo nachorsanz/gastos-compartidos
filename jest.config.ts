@@ -11,6 +11,8 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    "\\.(css)$": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png)$": "identity-obj-proxy",
   },
   transformIgnorePatterns: ['/node_modules/(?!@babel/runtime-corejs3)'],
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
