@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import GroupPanel from '../group-panel/group-panel-component';
-import {
-  PaymentGroupMembersType,
-  PaymentGroupType,
-} from '../../../domain/payments';
-import { createMockPaymentsGroup } from '../../../api/mock/mock-factory';
+import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
+import { GroupType } from '../../../domain/groups';
 
 const StyledGroupComponent = styled.div`
   display: flex;
@@ -60,14 +57,14 @@ const StyledSelect = styled.select`
 
 type UserPanelProps = {
   payments: PaymentGroupType;
-  groups: PaymentGroupMembersType[];
+  groups: GroupType[];
 };
 
 const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
   const { user } = useAppContext();
 
   const [showPanel, setShowPanel] = useState<boolean>(false);
-  const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
+  const [selectedGroup, setSelectedGroup] = useState<GroupType>();
   const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const groupIndex = parseInt(e.target.value);
     setSelectedGroup(groups[groupIndex]);

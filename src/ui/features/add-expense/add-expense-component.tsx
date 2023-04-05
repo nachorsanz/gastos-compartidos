@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import {
-  PaymentGroupMembersType,
-  PaymentGroupType,
-  PaymentType,
-} from '../../../domain/payments';
+import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
+import { GroupType } from '../../../domain/groups';
+import { convertDateFormat } from '../../../domain/utils';
 
 const Form = styled.form`
   display: flex;
@@ -54,7 +52,7 @@ type AddExpenseFormProps = {
     createdAt: string,
   ) => void;
   payments: PaymentGroupType;
-  groups: PaymentGroupMembersType[];
+  groups: GroupType[];
 };
 
 const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
@@ -64,7 +62,7 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
 }) => {
   const [description, setDescription] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-  const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
+  const [selectedGroup, setSelectedGroup] = useState<GroupType>();
   const { user } = useAppContext();
 
   const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -86,10 +84,13 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
   };
 
   return (
-    <div>
+    <div data-testid="add-expense-component">
       <Form onSubmit={handleSubmit}>
         <Card>
-          <StyledSelect onChange={handleGroupSelect}>
+          <StyledSelect
+            data-testid="add-expense-select"
+            onChange={handleGroupSelect}
+          >
             <option value="">Select Group</option>
             {groups.map((group, index) => (
               <option key={group.name} value={index}>
@@ -98,17 +99,21 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
             ))}
           </StyledSelect>
           <Input
+            data-testid="add-expense-amout"
             type="number"
             value={amount}
             onChange={(e) => setAmount(parseFloat(e.target.value))}
           />
           <Input
+            data-testid="add-expense-description"
             placeholder="Descripcion"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <Button type="submit">+</Button>
+          <Button data-testid="add-expense-button" type="submit">
+            +
+          </Button>
         </Card>
       </Form>
     </div>

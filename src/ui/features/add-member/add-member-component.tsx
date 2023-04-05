@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { PaymentGroupMembersType } from '../../../domain/payments';
+import { GroupType } from '../../../domain/groups';
 
 const Form = styled.form`
   display: flex;
@@ -65,8 +65,8 @@ const StyledTitleLink = styled.p`
 `;
 
 type AddMemberFormProps = {
-  groupsState: PaymentGroupMembersType[];
-  handleUpdateGroups: (groupsState: PaymentGroupMembersType[]) => void;
+  groupsState: GroupType[];
+  handleUpdateGroups: (groupsState: GroupType[]) => void;
 };
 
 const AddMemberForm: React.FC<AddMemberFormProps> = ({
@@ -74,7 +74,7 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
   handleUpdateGroups,
 }) => {
   const [name, setName] = useState<string>('');
-  const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
+  const [selectedGroup, setSelectedGroup] = useState<GroupType>();
   const [shownMembers, setShownMembers] = useState<boolean>(false);
 
   const toggleShownMembers = () => {
@@ -83,17 +83,15 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatedGroups: PaymentGroupMembersType[] = groupsState.map(
-      (group) => {
-        if (group.name === selectedGroup?.name) {
-          return {
-            ...group,
-            members: [...group.members, name],
-          };
-        }
-        return group;
-      },
-    );
+    const updatedGroups: GroupType[] = groupsState.map((group) => {
+      if (group.name === selectedGroup?.name) {
+        return {
+          ...group,
+          members: [...group.members, name],
+        };
+      }
+      return group;
+    });
     handleUpdateGroups(updatedGroups);
     setSelectedGroup(
       updatedGroups.find((group) => group.name === selectedGroup?.name),
@@ -106,17 +104,21 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
   };
 
   return (
-    <div>
+    <div data-testid="add-member-component">
       <Form onSubmit={handleSubmit}>
         <Card>
           <Input
+            data-testid="add-member-name"
             type="text"
             placeholder="Nombre"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
-          <StyledSelect onChange={handleGroupSelect}>
+          <StyledSelect
+            data-testid="add-member-select"
+            onChange={handleGroupSelect}
+          >
             <option value="">Select Group</option>
             {groupsState.map((group, index) => (
               <option key={group.name} value={index}>
@@ -124,16 +126,23 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
               </option>
             ))}
           </StyledSelect>
-          <StyledTitleLink onClick={toggleShownMembers}>
+          <StyledTitleLink
+            data-testid="add-member-link"
+            onClick={toggleShownMembers}
+          >
             Ver miembros
           </StyledTitleLink>
 
-          <Button type="submit" className="add-button">
+          <Button
+            data-testid="add-member-button"
+            type="submit"
+            className="add-button"
+          >
             +
           </Button>
         </Card>
         {shownMembers && selectedGroup && (
-          <GroupCard>
+          <GroupCard data-testid="add-member-group-component">
             <GroupName>{selectedGroup.name}</GroupName>
             <GroupMembers>
               {selectedGroup.members.map((member) => (

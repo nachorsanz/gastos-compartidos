@@ -5,7 +5,7 @@ import {
   createMockUsersGroup,
   createPayment,
   createMockPaymentsGroup,
-  createGroups
+  createGroups,
 } from './mock-factory';
 
 describe('Mock Factory', () => {
@@ -44,7 +44,7 @@ describe('Mock Factory', () => {
       group: 'Grupo 1',
       description: 'Payment 1',
       amount: 100,
-      createdAt: '5/4/2023',
+      createdAt: '4/5/2023',
       state: 'cerrado',
     });
   });
@@ -57,7 +57,7 @@ describe('Mock Factory', () => {
         group: 'Grupo 1',
         description: 'Payment 1',
         amount: 100,
-        createdAt: '5/4/2023',
+        createdAt: '4/5/2023',
         state: 'cerrado',
       },
       {
@@ -65,7 +65,7 @@ describe('Mock Factory', () => {
         group: 'Grupo 1',
         description: 'Payment 2',
         amount: 200,
-        createdAt: '4/4/2023',
+        createdAt: '5/4/2023',
         state: 'pendiente',
       },
       {
@@ -73,7 +73,7 @@ describe('Mock Factory', () => {
         group: 'Grupo 2',
         description: 'Payment 3',
         amount: 300,
-        createdAt: '5/4/2023',
+        createdAt: '4/5/2023',
         state: 'cerrado',
       },
     ]);

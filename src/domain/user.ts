@@ -2,9 +2,7 @@ export type UserType = {
   id: string;
   name: string;
   email: string;
-  group: GroupType[];
+  group: string[];
 };
 
 export type UserGroupType = UserType[];
-
-export type GroupType = string;

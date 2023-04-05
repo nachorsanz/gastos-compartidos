@@ -41,11 +41,8 @@ const GroupPanelItem: React.FC<PaymentType> = ({
       <UserInfo>
         Pagado por: {userId} en {group} -{' '}
       </UserInfo>
-
       <Amount>Importe: {amount} - </Amount>
-
       <Description>Descripción: {description} - </Description>
-
       <Date>Fecha: {createdAt}</Date>
     </StyledGroupPanelItem>
   );

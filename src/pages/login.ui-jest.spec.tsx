@@ -2,22 +2,49 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom/extend-expect';
-import Login from './Login';
-import { render } from '@testing-library/react';
+import LoginPage from './Login';
+import { render, fireEvent, screen } from '@testing-library/react';
 import WrapperTestingProvider from '../config-adapter/wrapper-testing-provider';
+
+const navigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: jest.fn(),
+  useNavigate: () => navigate,
 }));
 
-describe('Login', () => {
-  it('should render', () => {
+describe('LoginPage', () => {
+  it('should render login component', () => {
     const { getByTestId } = render(
       <WrapperTestingProvider>
-        <Login />
+        <LoginPage />
       </WrapperTestingProvider>,
     );
+
     expect(getByTestId('login')).toBeInTheDocument();
+  });
+
+  it('should call onLogin when login button is clicked', () => {
+    const { getByTestId } = render(
+      <WrapperTestingProvider>
+        <LoginPage />
+      </WrapperTestingProvider>,
+    );
+
+    const loginButton = getByTestId('login-button');
+    fireEvent.click(loginButton);
+    expect(screen.getByTestId('login')).toBeInTheDocument();
+  });
+
+  it('should call navigate when login button is clicked', () => {
+    const { getByTestId } = render(
+      <WrapperTestingProvider>
+        <LoginPage />
+      </WrapperTestingProvider>,
+    );
+
+    const loginButton = getByTestId('login-button');
+    fireEvent.click(loginButton);
+    expect(navigate).toHaveBeenCalledWith('/home');
   });
 });

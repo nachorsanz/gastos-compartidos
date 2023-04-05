@@ -23,7 +23,7 @@ const GroupPanel: React.FC<GroupPanelProps> = ({ payments }) => {
 
   return (
     <div data-testid="group-panel">
-      <StyledGroupPanel>
+      <StyledGroupPanel data-testid="group-panel-list">
         {sortedPayments.map((payment, index) => (
           <GroupPanelItem
             key={`payment-${index}`}

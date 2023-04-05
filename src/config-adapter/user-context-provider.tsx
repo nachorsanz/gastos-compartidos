@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type AppContextValue = {
+export type AppContextValue = {
   user: string | null;
 
   setUser: (user: string | null) => void;

@@ -1,8 +1,5 @@
-import {
-  PaymentGroupMembersType,
-  PaymentGroupType,
-  PaymentType,
-} from '../../domain/payments';
+import { GroupType } from '../../domain/groups';
+import { PaymentGroupType, PaymentType } from '../../domain/payments';
 import { UserGroupType, UserType } from '../../domain/user';
 
 export const createMockUser = (): UserType => {
@@ -37,7 +34,7 @@ export const createPayment = (): PaymentType => {
     group: 'Grupo 1',
     description: 'Payment 1',
     amount: 100,
-    createdAt: '5/4/2023',
+    createdAt: '4/5/2023',
     state: 'cerrado',
   };
 };
@@ -49,7 +46,7 @@ export const createMockPaymentsGroup = (): PaymentGroupType => {
       group: 'Grupo 1',
       description: 'Payment 1',
       amount: 100,
-      createdAt: '5/4/2023',
+      createdAt: '4/5/2023',
       state: 'cerrado',
     },
     {
@@ -57,7 +54,7 @@ export const createMockPaymentsGroup = (): PaymentGroupType => {
       group: 'Grupo 1',
       description: 'Payment 2',
       amount: 200,
-      createdAt: '4/4/2023',
+      createdAt: '5/4/2023',
       state: 'pendiente',
     },
     {
@@ -65,13 +62,13 @@ export const createMockPaymentsGroup = (): PaymentGroupType => {
       group: 'Grupo 2',
       description: 'Payment 3',
       amount: 300,
-      createdAt: '5/4/2023',
+      createdAt: '4/5/2023',
       state: 'cerrado',
     },
   ];
 };
 
-export const createGroups = (): PaymentGroupMembersType[] => {
+export const createGroups = (): GroupType[] => {
   return [
     {
       name: 'Grupo 1',

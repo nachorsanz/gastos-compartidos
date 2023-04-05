@@ -40,7 +40,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SubmitButton type="submit">Log in</SubmitButton>
+        <SubmitButton data-testid="login-button" type="submit">
+          Log in
+        </SubmitButton>
       </LoginForm>
     </LoginContainer>
   );

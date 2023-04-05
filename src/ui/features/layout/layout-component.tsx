@@ -3,14 +3,12 @@ import styled from '@emotion/styled';
 import UserPanel from '../user-panel/user-panel';
 import AddMemberForm from '../add-member/add-member-component';
 import AddExpenseForm from '../add-expense/add-expense-component';
-import {
-  PaymentGroupMembersType,
-  PaymentGroupType,
-} from '../../../domain/payments';
+import { PaymentGroupType } from '../../../domain/payments';
 import {
   createGroups,
   createMockPaymentsGroup,
 } from '../../../api/mock/mock-factory';
+import { GroupType } from '../../../domain/groups';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -33,11 +31,11 @@ const Layout: React.FC = () => {
     createMockPaymentsGroup(),
   );
 
-  const [groupsState, setGroupsState] = useState<PaymentGroupMembersType[]>([
+  const [groupsState, setGroupsState] = useState<GroupType[]>([
     ...createGroups(),
   ]);
 
-  const handleUpdateGroups = (groupsState: PaymentGroupMembersType[]) => {
+  const handleUpdateGroups = (groupsState: GroupType[]) => {
     setGroupsState([...groupsState]);
   };
 
