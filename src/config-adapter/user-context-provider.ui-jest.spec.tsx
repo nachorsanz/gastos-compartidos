@@ -4,9 +4,9 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import { AppProvider, useAppContext } from './user-context-provider';
-beforeEach(()=>{
-    localStorage.setItem('user', '');
-})
+beforeEach(() => {
+  localStorage.setItem('user', '');
+});
 describe('AppContext', () => {
   it('exports AppProvider', () => {
     expect(AppProvider).toBeDefined();
@@ -31,6 +31,4 @@ describe('AppContext', () => {
 
     expect(screen.getByTestId('user')).toHaveTextContent('test-user');
   });
-
- 
 });

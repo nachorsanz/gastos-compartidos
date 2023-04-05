@@ -12,7 +12,7 @@ describe('WrapperTestingProvider', () => {
 
     // Act
     const { getByText } = render(
-      <WrapperTestingProvider>{children}</WrapperTestingProvider>
+      <WrapperTestingProvider>{children}</WrapperTestingProvider>,
     );
     const renderedText = getByText('Test Children');
 

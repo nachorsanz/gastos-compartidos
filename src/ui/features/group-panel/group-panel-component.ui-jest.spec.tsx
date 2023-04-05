@@ -7,7 +7,7 @@ import { createMockPaymentsGroup } from '../../../api/mock/mock-factory';
 import GroupPanel from './group-panel-component';
 
 describe('GroupPanel component', () => {
-  const payments = createMockPaymentsGroup()
+  const payments = createMockPaymentsGroup();
 
   it('renders correctly', () => {
     const { getByTestId } = render(<GroupPanel payments={payments} />);

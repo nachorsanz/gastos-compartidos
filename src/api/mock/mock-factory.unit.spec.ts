@@ -103,6 +103,6 @@ describe('Mock Factory', () => {
         createdAt: '2022-02-28',
         state: 'cerrado',
       },
-    ])
-  })
+    ]);
+  });
 });

@@ -146,7 +146,7 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
             <GroupName>{selectedGroup.name}</GroupName>
             <GroupMembers data-testid="group-member">
               {selectedGroup.members.map((member) => (
-                <GroupMember  key={member}>{member}</GroupMember>
+                <GroupMember key={member}>{member}</GroupMember>
               ))}
             </GroupMembers>
           </GroupCard>
