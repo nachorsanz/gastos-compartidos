@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { createGroups } from '../../../api/mock/mock-factory';
 import { PaymentGroupMembersType } from '../../../domain/payments';
 
 const Form = styled.form`
@@ -9,43 +8,40 @@ const Form = styled.form`
 `;
 
 const StyledSelect = styled.select`
-padding: 0.4rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ccc;
+  padding: 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
 `;
 
-
 const Input = styled.input`
-padding: 0.4rem;
+  padding: 0.4rem;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
 `;
 
 const Button = styled.button`
-width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
   background-color: #0077cc;
   color: #fff;
   cursor: pointer;
-
 `;
 
 const Card = styled.div`
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
-    padding: 1rem;
+  padding: 1rem;
 
   display: flex;
   justify-content: space-around;
-    align-items: center;
+  align-items: center;
 `;
 
 const GroupCard = styled(Card)`
   cursor: pointer;
-
 `;
 
 const GroupName = styled.h4`
@@ -61,68 +57,94 @@ const GroupMembers = styled.ul`
 const GroupMember = styled.li`
   margin-bottom: 0.25rem;
 `;
-const AddPersonForm: React.FC = () => {
+
+const StyledTitleLink = styled.p`
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+`;
+
+type AddMemberFormProps = {
+  groupsState: PaymentGroupMembersType[];
+  handleUpdateGroups: (groupsState: PaymentGroupMembersType[]) => void;
+};
+
+const AddMemberForm: React.FC<AddMemberFormProps> = ({
+  groupsState,
+  handleUpdateGroups,
+}) => {
   const [name, setName] = useState<string>('');
   const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
-  const [groupsState, setGroupsState] = useState<PaymentGroupMembersType[]>([...createGroups()])
+  const [shownMembers, setShownMembers] = useState<boolean>(false);
+
+  const toggleShownMembers = () => {
+    setShownMembers(!shownMembers);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatedGroups = groupsState.map((group) => {
-      if (group.name === selectedGroup?.name) {
-        return {
-          ...group,
-          members: [...group.members, name],
-        };
-      }
-      return group;
-    });
-    setGroupsState([...updatedGroups]);
+    const updatedGroups: PaymentGroupMembersType[] = groupsState.map(
+      (group) => {
+        if (group.name === selectedGroup?.name) {
+          return {
+            ...group,
+            members: [...group.members, name],
+          };
+        }
+        return group;
+      },
+    );
+    handleUpdateGroups(updatedGroups);
     setSelectedGroup(
-       updatedGroups.find((group) => group.name === selectedGroup?.name)
+      updatedGroups.find((group) => group.name === selectedGroup?.name),
     );
   };
-  
+
   const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const groupIndex = parseInt(e.target.value);
     setSelectedGroup(groupsState[groupIndex]);
   };
-  
+
   return (
-    <div >
+    <div>
       <Form onSubmit={handleSubmit}>
         <Card>
-  
-            <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-    
+          <Input
+            type="text"
+            placeholder="Nombre"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-       
-       
-        <StyledSelect onChange={handleGroupSelect}>
-          <option value="">Select Group</option>
-          {groupsState.map((group, index) => (
-            <option key={group.name} value={index}>
-              {group.name}
-            </option>
-          ))}
-        </StyledSelect>
-     
-        <Button type="submit" className="add-button">+</Button>
-         
-            
-        </Card>
-        {selectedGroup && (
-        <GroupCard>
-          <GroupName>{selectedGroup.name}</GroupName>
-          <GroupMembers>
-            {selectedGroup.members.map((member) => (
-              <GroupMember key={member}>{member}</GroupMember>
+          <StyledSelect onChange={handleGroupSelect}>
+            <option value="">Select Group</option>
+            {groupsState.map((group, index) => (
+              <option key={group.name} value={index}>
+                {group.name}
+              </option>
             ))}
-          </GroupMembers >
+          </StyledSelect>
+          <StyledTitleLink onClick={toggleShownMembers}>
+            Ver miembros
+          </StyledTitleLink>
+
+          <Button type="submit" className="add-button">
+            +
+          </Button>
+        </Card>
+        {shownMembers && selectedGroup && (
+          <GroupCard>
+            <GroupName>{selectedGroup.name}</GroupName>
+            <GroupMembers>
+              {selectedGroup.members.map((member) => (
+                <GroupMember key={member}>{member}</GroupMember>
+              ))}
+            </GroupMembers>
           </GroupCard>
-            )}
+        )}
       </Form>
-      </div>
-    );
-  };
-  
-  export default AddPersonForm;
+    </div>
+  );
+};
+
+export default AddMemberForm;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Login from '../ui/features/login-component/login-component';
-import { createUser } from '../api/create-user/create-user';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../config-adapter/user-context-provider';
 
 const LoginPageContainer = styled.div`
   display: flex;
@@ -13,12 +13,20 @@ const LoginPageContainer = styled.div`
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { setUser, user } = useAppContext();
   const onLogin = (email: string, password: string) => {
-    const loggedUser = createUser({ email, password });
-    loggedUser.then((user) => {
-      if (user.user) navigate('/home');
-    });
+    setUser(email);
+    localStorage.setItem('user', email);
+    navigate('/home');
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/home');
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <LoginPageContainer data-testid="login">

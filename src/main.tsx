@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import Home from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/Login';
-import { supabase } from './api/client/client';
-import { Provider } from 'react-supabase';
+
+import { AppProvider } from './config-adapter/user-context-provider';
 const router = createBrowserRouter([
   {
     path: '/home',
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider value={supabase}>
+    <AppProvider>
       <RouterProvider router={router} />
-    </Provider>
+    </AppProvider>
   </React.StrictMode>,
 );

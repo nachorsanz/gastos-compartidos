@@ -4,6 +4,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import Login from './Login';
 import { render } from '@testing-library/react';
+import WrapperTestingProvider from '../config-adapter/wrapper-testing-provider';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -12,7 +13,11 @@ jest.mock('react-router-dom', () => ({
 
 describe('Login', () => {
   it('should render', () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = render(
+      <WrapperTestingProvider>
+        <Login />
+      </WrapperTestingProvider>,
+    );
     expect(getByTestId('login')).toBeInTheDocument();
   });
 });

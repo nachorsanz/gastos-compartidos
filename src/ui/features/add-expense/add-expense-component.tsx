@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { PaymentType } from '../../../domain/payments';
+import {
+  PaymentGroupMembersType,
+  PaymentGroupType,
+  PaymentType,
+} from '../../../domain/payments';
+import { useAppContext } from '../../../config-adapter/user-context-provider';
 
 const Form = styled.form`
   display: flex;
@@ -34,33 +39,48 @@ const Card = styled.div`
   align-items: center;
 `;
 
-const ExpenseCard = styled(Card)`
-  cursor: pointer;
+const StyledSelect = styled.select`
+  padding: 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
 `;
 
-const ExpenseDescription = styled.h4`
-  margin: 0 0 0.5rem;
-`;
+type AddExpenseFormProps = {
+  handleNewPayment: (
+    userId: string,
+    group: string,
+    amount: number,
+    description: string,
+    createdAt: string,
+  ) => void;
+  payments: PaymentGroupType;
+  groups: PaymentGroupMembersType[];
+};
 
-const ExpenseAmount = styled.p`
-  margin: 0;
-`;
-
- const AddExpenseForm: React.FC = () => {
+const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
+  handleNewPayment,
+  payments,
+  groups,
+}) => {
   const [description, setDescription] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-  const [expenses, setExpenses] = useState<PaymentType[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
+  const { user } = useAppContext();
+
+  const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const groupIndex = parseInt(e.target.value);
+    setSelectedGroup(groups[groupIndex]);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newExpense: PaymentType = {
-      id: Math.random().toString(),
-      userId: '1234', // just a dummy userId for now
-      description,
+    handleNewPayment(
+      user ?? '',
+      selectedGroup?.name ?? '',
       amount,
-      createdAt: new Date().toISOString(),
-    };
-    setExpenses([...expenses, newExpense]);
+      description,
+      new Date().toLocaleDateString(),
+    );
     setDescription('');
     setAmount(0);
   };
@@ -69,23 +89,30 @@ const ExpenseAmount = styled.p`
     <div>
       <Form onSubmit={handleSubmit}>
         <Card>
-          <Input placeholder='Descripcion' type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <Input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
+          <StyledSelect onChange={handleGroupSelect}>
+            <option value="">Select Group</option>
+            {groups.map((group, index) => (
+              <option key={group.name} value={index}>
+                {group.name}
+              </option>
+            ))}
+          </StyledSelect>
+          <Input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(parseFloat(e.target.value))}
+          />
+          <Input
+            placeholder="Descripcion"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
           <Button type="submit">+</Button>
         </Card>
       </Form>
-      {expenses.length > 0 &&
-        expenses.map((expense) => (
-          <ExpenseCard key={expense.id}>
-            <div>
-              <ExpenseDescription>{expense.description}</ExpenseDescription>
-              <ExpenseAmount>{`$${expense.amount.toFixed(2)}`}</ExpenseAmount>
-            </div>
-            <div>{expense.createdAt}</div>
-          </ExpenseCard>
-        ))}
     </div>
   );
 };
 
-export default AddExpenseForm
+export default AddExpenseForm;

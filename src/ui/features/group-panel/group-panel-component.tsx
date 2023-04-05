@@ -12,21 +12,11 @@ const StyledGroupPanel = styled.div`
   gap: 10px;
 `;
 
-const GroupPanel: React.FC = () => {
-  const [payments, setPayments] = useState<PaymentGroupType>(
-    createMockPaymentsGroup(),
-  );
+type GroupPanelProps = {
+  payments: PaymentGroupType;
+};
 
-  const handleNewPayment = (
-    userId: string,
-    amount: number,
-    description: string,
-    createdAt: string,
-    id: string,
-  ) => {
-    setPayments([...payments, { id, userId, amount, description, createdAt }]);
-  };
-
+const GroupPanel: React.FC<GroupPanelProps> = ({ payments }) => {
   const sortedPayments = [...payments].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
@@ -37,8 +27,9 @@ const GroupPanel: React.FC = () => {
         {sortedPayments.map((payment, index) => (
           <GroupPanelItem
             key={`payment-${index}`}
-            id={payment.id}
             userId={payment.userId}
+            state={payment.state}
+            group={payment.group}
             amount={payment.amount}
             description={payment.description}
             createdAt={payment.createdAt}

@@ -30,17 +30,22 @@ const Date = styled.div`
 `;
 
 const GroupPanelItem: React.FC<PaymentType> = ({
-  id,
   userId,
+  group,
   amount,
   description,
   createdAt,
 }) => {
   return (
     <StyledGroupPanelItem>
-      <UserInfo>Pagado por: {userId}</UserInfo>
-      <Amount>Importe: {amount}</Amount>
-      <Description>Descripción: {description}</Description>
+      <UserInfo>
+        Pagado por: {userId} en {group} -{' '}
+      </UserInfo>
+
+      <Amount>Importe: {amount} - </Amount>
+
+      <Description>Descripción: {description} - </Description>
+
       <Date>Fecha: {createdAt}</Date>
     </StyledGroupPanelItem>
   );

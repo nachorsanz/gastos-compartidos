@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import GroupPanel from '../group-panel/group-panel-component';
+import {
+  PaymentGroupMembersType,
+  PaymentGroupType,
+} from '../../../domain/payments';
+import { createMockPaymentsGroup } from '../../../api/mock/mock-factory';
+import { useAppContext } from '../../../config-adapter/user-context-provider';
 
 const StyledGroupComponent = styled.div`
   display: flex;
@@ -17,8 +23,8 @@ const StyledGroupComponent = styled.div`
 const StyledGroupComponentContainer = styled.div`
   display: flex;
   width: 100%;
-    justify-content: space-around;
- `;
+  justify-content: space-around;
+`;
 
 const StyledItem = styled.div`
   display: flex;
@@ -37,7 +43,7 @@ const StyledTitle = styled.h1`
   text-align: center;
 `;
 const StyledButton = styled.button`
-width: 100%;
+  width: 100%;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   border: none;
@@ -46,10 +52,26 @@ width: 100%;
   cursor: pointer;
   margin-bottom: 30px;
 `;
+const StyledSelect = styled.select`
+  padding: 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+`;
 
+type UserPanelProps = {
+  payments: PaymentGroupType;
+  groups: PaymentGroupMembersType[];
+};
 
-const UserPanel: React.FC = () => {
+const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
+  const { user } = useAppContext();
+
   const [showPanel, setShowPanel] = useState<boolean>(false);
+  const [selectedGroup, setSelectedGroup] = useState<PaymentGroupMembersType>();
+  const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const groupIndex = parseInt(e.target.value);
+    setSelectedGroup(groups[groupIndex]);
+  };
 
   const handleShowPanel = () => {
     setShowPanel(!showPanel);
@@ -57,16 +79,44 @@ const UserPanel: React.FC = () => {
 
   return (
     <div data-testid="user-panel">
-      <StyledTitle>Hi, user!</StyledTitle>
+      <StyledTitle>Hi, {user?.split('@')[0]}!</StyledTitle>
       <StyledGroupComponent>
         <StyledGroupComponentContainer>
-          <StyledItem>Estás en 5 grupos</StyledItem>
-         
+          <StyledItem>Estás en {groups.length} grupos</StyledItem>
 
-          <StyledItem>Total 345.45€</StyledItem>
+          <StyledItem>
+            Total:{' '}
+            {payments.reduce((acc, payment) => {
+              return acc + payment.amount;
+            }, 0)}{' '}
+            €
+          </StyledItem>
         </StyledGroupComponentContainer>
-          <StyledButton onClick={handleShowPanel}>{showPanel ? 'Cerrar': 'Ampliar'}</StyledButton>
-        {showPanel && <GroupPanel />}
+        <StyledButton onClick={handleShowPanel}>
+          {showPanel ? 'Cerrar' : 'Ampliar'}
+        </StyledButton>
+
+        {showPanel && (
+          <>
+            <StyledSelect onChange={handleGroupSelect}>
+              <option value="">Select Group</option>
+              {groups.map((group, index) => (
+                <option key={group.name} value={index}>
+                  {group.name}
+                </option>
+              ))}
+            </StyledSelect>
+            <GroupPanel
+              payments={
+                !selectedGroup
+                  ? payments
+                  : payments.filter(
+                      (payment) => payment.group === selectedGroup.name,
+                    )
+              }
+            />
+          </>
+        )}
       </StyledGroupComponent>
     </div>
   );

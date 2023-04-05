@@ -10,7 +10,7 @@ export const createMockUser = (): UserType => {
     id: '1',
     name: 'John Doe',
     email: 'johndoe@mail.com',
-    group: ['1'],
+    group: ['Grupo 1'],
   };
 };
 
@@ -20,42 +20,53 @@ export const createMockUsersGroup = (): UserGroupType => {
       id: '1',
       name: 'johndoe@mail.com',
       email: '',
-      group: ['1'],
+      group: ['Grupo 1'],
     },
     {
       id: '2',
       name: 'Jane Doe',
       email: 'janedoe@mail.com',
-      group: ['1'],
+      group: ['Grupo 2'],
     },
   ];
 };
 
 export const createPayment = (): PaymentType => {
   return {
-    id: '1',
     userId: '1',
+    group: 'Grupo 1',
     description: 'Payment 1',
     amount: 100,
-    createdAt: new Date().toLocaleDateString(),
+    createdAt: '5/4/2023',
+    state: 'cerrado',
   };
 };
 
 export const createMockPaymentsGroup = (): PaymentGroupType => {
   return [
     {
-      id: '1',
       userId: '1',
+      group: 'Grupo 1',
       description: 'Payment 1',
       amount: 100,
-      createdAt: new Date().toLocaleDateString(),
+      createdAt: '5/4/2023',
+      state: 'cerrado',
     },
     {
-      id: '2',
       userId: '2',
+      group: 'Grupo 1',
       description: 'Payment 2',
       amount: 200,
-      createdAt: new Date().toLocaleDateString(),
+      createdAt: '4/4/2023',
+      state: 'pendiente',
+    },
+    {
+      userId: '1',
+      group: 'Grupo 2',
+      description: 'Payment 3',
+      amount: 300,
+      createdAt: '5/4/2023',
+      state: 'cerrado',
     },
   ];
 };
@@ -67,18 +78,21 @@ export const createGroups = (): PaymentGroupMembersType[] => {
       members: ['Juan', 'María', 'Pedro'],
       balance: 100,
       createdAt: '2022-04-01',
+      state: 'cerrado',
     },
     {
       name: 'Grupo 2',
       members: ['Laura', 'Carlos', 'Ana'],
       balance: -50,
       createdAt: '2022-03-15',
+      state: 'abierto',
     },
     {
       name: 'Grupo 3',
       members: ['Marta', 'Luis', 'Sara'],
       balance: 0,
       createdAt: '2022-02-28',
+      state: 'cerrado',
     },
   ];
 };
