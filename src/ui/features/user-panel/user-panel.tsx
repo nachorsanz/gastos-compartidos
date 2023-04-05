@@ -16,12 +16,13 @@ const StyledUserContainer = styled.div`
 
 const StyledItem = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   height: 90px;
   align-items: center;
-  font-size: 20px;
+  font-size: 2.5rem;
   font-weight: bold;
   padding: 10px;
+  color: #0077cc;
 `;
 
 const StyledTitle = styled.h1`
