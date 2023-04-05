@@ -67,7 +67,6 @@ export const StyledGroupCard = styled(StyledCard)`
   cursor: pointer;
 `;
 
-
 export const StyledGroupMembers = styled.ul`
   list-style: none;
   margin: 0;

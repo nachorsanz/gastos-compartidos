@@ -16,7 +16,6 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [name, setName] = useState<string>('');
 
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onLogin(name);
@@ -34,7 +33,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-     
+
         <StyledSubmitButton data-testid="login-button" type="submit">
           Entrar
         </StyledSubmitButton>
