@@ -8,13 +8,21 @@ const StyledGroupPanelItem = styled.div`
   padding: 20px;
   border: 1px solid #e8e8e8;
   border-radius: 4px;
+  gap: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   background-color: #fff;
+  margin-bottom: 10px;
+  @media (max-width: 700px) {
+    width: 280px;
+    font-size: 12px;
+    gap: 10px;
+  }
 `;
 
 const UserInfo = styled.div`
   font-weight: bold;
   margin-right: 10px;
+  max-width: min-content;
 `;
 
 const Amount = styled.div`
@@ -48,7 +56,7 @@ const GroupPanelItem: React.FC<PaymentType> = ({
   return (
     <StyledGroupPanelItem data-testid="group-panel-item">
       <UserInfo>
-        Creado por: {userId} en {group}
+        {userId} en {group}
       </UserInfo>
       <Amount>
         Importe: {state === 'finalizado' ? amount : `-${amount}`}{' '}
