@@ -1,15 +1,7 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import React from 'react';
 import GroupPanelItem from './group-panel-item-component';
 import { PaymentGroupType } from '../../../domain/payments';
-import { createMockPaymentsGroup } from '../../../api/mock/mock-factory';
-
-const StyledGroupPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-`;
+import { StyledGroupPanel } from './styled-group-panel-components';
 
 type GroupPanelProps = {
   payments: PaymentGroupType;
@@ -22,7 +14,7 @@ const GroupPanel: React.FC<GroupPanelProps> = ({ payments }) => {
 
   return (
     <div data-testid="group-panel">
-      <StyledGroupPanel data-testid="group-panel-list">
+      <StyledGroupPanel>
         {sortedPayments.map((payment, index) => (
           <GroupPanelItem
             data-testid="group-panel-item"

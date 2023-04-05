@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const AccordionWrapper = styled.div`
+export const StyledAccordionWrapper = styled.div`
   border: none;
   border-bottom: 1px solid #d1d1d1;
   margin: 0;
@@ -12,7 +12,7 @@ export const AccordionWrapper = styled.div`
   }
 `;
 
-export const AccordionTitle = styled.div`
+export const StyledAccordionTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,7 +41,7 @@ export const AccordionTitle = styled.div`
   }
 `;
 
-export const AccordionContent = styled.div`
+export const StyledAccordionContent = styled.div`
   padding: 24px;
   border-radius: 8px;
   background-color: #f9f9f9;

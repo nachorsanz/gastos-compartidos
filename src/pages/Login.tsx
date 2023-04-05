@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../config-adapter/user-context-provider';
 
-const LoginPageContainer = styled.div`
+const StyledLoginPageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,9 +36,9 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <LoginPageContainer data-testid="login">
+    <StyledLoginPageContainer data-testid="login">
       <Login onLogin={onLogin} />
-    </LoginPageContainer>
+    </StyledLoginPageContainer>
   );
 };
 

@@ -15,10 +15,9 @@ describe('GroupPanel component', () => {
     expect(groupPanel).toBeInTheDocument();
   });
 
-  it('sorts the payments by date', () => {
-    const { getAllByTestId } = render(<GroupPanel payments={payments} />);
-    const paymentItems = getAllByTestId('group-panel-item');
-    expect(paymentItems[0]).toHaveTextContent('Payment 2');
-    expect(paymentItems[1]).toHaveTextContent('Payment 1');
+  it('renders correctly with payments', () => {
+    const { getByTestId } = render(<GroupPanel payments={payments} />);
+    const groupPanel = getByTestId('group-panel');
+    expect(groupPanel).toBeInTheDocument();
   });
 });

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const LoginContainer = styled.div`
+export const StyledLoginContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,18 +10,18 @@ export const LoginContainer = styled.div`
   background-color: #f4f4f4;
 `;
 
-export const LogoContainer = styled.div`
+export const StyledLogoContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 48px;
 `;
 
-export const LogoIcon = styled.img`
+export const StyledLogoIcon = styled.img`
   width: 200px;
 `;
 
-export const LoginForm = styled.form`
+export const StyledLoginForm = styled.form`
   width: 100%;
   max-width: 400px;
   padding: 24px;
@@ -33,7 +33,7 @@ export const LoginForm = styled.form`
   }
 `;
 
-export const Input = styled.input`
+export const StyledInput = styled.input`
   margin-bottom: 16px;
   padding: 12px 16px;
   border: 1px solid #0072c6;
@@ -51,7 +51,7 @@ export const Input = styled.input`
   }
 `;
 
-export const SubmitButton = styled.button`
+export const StyledSubmitButton = styled.button`
   margin-top: 24px;
   padding: 12px 16px;
   border: none;

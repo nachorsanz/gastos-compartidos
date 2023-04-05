@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Logo from '/logo.png';
 import {
-  Input,
-  LoginContainer,
-  LoginForm,
-  LogoContainer,
-  LogoIcon,
-  SubmitButton,
+  StyledInput,
+  StyledLoginContainer,
+  StyledLoginForm,
+  StyledLogoContainer,
+  StyledLogoIcon,
+  StyledSubmitButton,
 } from './styled-login-components';
 
 interface LoginProps {
@@ -23,28 +23,28 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <LoginContainer data-testid="login-component">
-      <LogoContainer>
-        <LogoIcon src={Logo} />
-      </LogoContainer>
-      <LoginForm onSubmit={handleSubmit}>
-        <Input
+    <StyledLoginContainer data-testid="login-component">
+      <StyledLogoContainer>
+        <StyledLogoIcon src={Logo} />
+      </StyledLogoContainer>
+      <StyledLoginForm onSubmit={handleSubmit}>
+        <StyledInput
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Input
+        <StyledInput
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SubmitButton data-testid="login-button" type="submit">
+        <StyledSubmitButton data-testid="login-button" type="submit">
           Log in
-        </SubmitButton>
-      </LoginForm>
-    </LoginContainer>
+        </StyledSubmitButton>
+      </StyledLoginForm>
+    </StyledLoginContainer>
   );
 };
 

@@ -3,10 +3,10 @@ import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
 import { GroupType } from '../../../domain/groups';
 import {
-  Button,
-  Card,
-  Form,
-  Input,
+  StyledButton,
+  StyledCard,
+  StyledForm,
+  StyledInput,
   StyledSelect,
 } from './styled-add-expense-components';
 
@@ -52,8 +52,8 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
 
   return (
     <div data-testid="add-expense-component">
-      <Form onSubmit={handleSubmit}>
-        <Card>
+      <StyledForm onSubmit={handleSubmit}>
+        <StyledCard>
           <StyledSelect
             data-testid="add-expense-select"
             onChange={handleGroupSelect}
@@ -65,24 +65,24 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
               </option>
             ))}
           </StyledSelect>
-          <Input
+          <StyledInput
             data-testid="add-expense-amout"
             type="number"
             value={amount}
             onChange={(e) => setAmount(parseFloat(e.target.value))}
           />
-          <Input
+          <StyledInput
             data-testid="add-expense-description"
             placeholder="Descripcion"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <Button data-testid="add-expense-button" type="submit">
+          <StyledButton data-testid="add-expense-button" type="submit">
             +
-          </Button>
-        </Card>
-      </Form>
+          </StyledButton>
+        </StyledCard>
+      </StyledForm>
     </div>
   );
 };

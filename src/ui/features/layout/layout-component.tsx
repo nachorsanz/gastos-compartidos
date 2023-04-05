@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import UserPanel from '../user-panel/user-panel';
+import UserPanel from '../user-panel/user-panel-component';
 import AddMemberForm from '../add-member/add-member-component';
 import AddExpenseForm from '../add-expense/add-expense-component';
 import { PaymentGroupType } from '../../../domain/payments';
@@ -11,56 +10,13 @@ import {
 import { GroupType } from '../../../domain/groups';
 import Logo from '/logo.png';
 import AccordionWrapper from '../accordion-wrapper/accordion-wrapper-component';
-
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-  height: 100vh;
-  padding-top: 20px;
-  background-color: #f6f6f6;
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 80px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: -18px;
-`;
-
-const LogoIcon = styled.img`
-  width: 40px;
-  margin-right: 12px;
-`;
-
-const LogoText = styled.h1`
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
-`;
-
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  @media (max-width: 700px) {
-    margin: 0;
-    width: 300px;
-  }
-`;
+import {
+  StyledHeader,
+  StyledLayoutContainer,
+  StyledLogoIcon,
+  StyledLogoText,
+  StyledMain,
+} from './styled-layout-components';
 
 const Layout: React.FC = () => {
   const [payments, setPayments] = useState<PaymentGroupType>(
@@ -89,12 +45,12 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <LayoutContainer data-testid="layout">
-      <Header>
-        <LogoIcon src={Logo} alt="logo" />
-        <LogoText>Gastos Compartidos</LogoText>
-      </Header>
-      <Main>
+    <StyledLayoutContainer data-testid="layout">
+      <StyledHeader>
+        <StyledLogoIcon src={Logo} alt="logo" />
+        <StyledLogoText>Gastos Compartidos</StyledLogoText>
+      </StyledHeader>
+      <StyledMain>
         <UserPanel payments={payments} groups={groupsState} />
         <AccordionWrapper
           title="Añadir Gastos"
@@ -117,8 +73,8 @@ const Layout: React.FC = () => {
             />
           }
         />
-      </Main>
-    </LayoutContainer>
+      </StyledMain>
+    </StyledLayoutContainer>
   );
 };
 

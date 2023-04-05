@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
-  AccordionContent,
-  AccordionTitle,
-  AccordionWrapper,
+  StyledAccordionContent,
+  StyledAccordionTitle,
+  StyledAccordionWrapper,
 } from './styled-accordion-components';
 
 type AccordionProps = {
@@ -16,13 +16,16 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
   const handleToggle = () => setIsOpen(!isOpen);
 
   return (
-    <AccordionWrapper>
-      <AccordionTitle className={isOpen ? 'open' : ''} onClick={handleToggle}>
+    <StyledAccordionWrapper>
+      <StyledAccordionTitle
+        className={isOpen ? 'open' : ''}
+        onClick={handleToggle}
+      >
         <h3>{title}</h3>
         <span>&#9660;</span>
-      </AccordionTitle>
-      {isOpen && <AccordionContent>{children}</AccordionContent>}
-    </AccordionWrapper>
+      </StyledAccordionTitle>
+      {isOpen && <StyledAccordionContent>{children}</StyledAccordionContent>}
+    </StyledAccordionWrapper>
   );
 };
 

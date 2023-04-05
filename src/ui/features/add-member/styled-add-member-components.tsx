@@ -4,8 +4,28 @@ export const StyledForm = styled.form`
   display: flex;
   width: 100%;
   max-width: 600px;
+
   @media (max-width: 700px) {
     min-width: 250px;
+  }
+`;
+
+export const StyledSelect = styled.select`
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  width: 150px;
+  @media (max-width: 700px) {
+    width: 160px;
+  }
+`;
+
+export const StyledSelectOption = styled.option`
+  font-size: 16px;
+  background: #fff;
+  position: relative;
+  &:hover {
+    background: #e0f2f7;
   }
 `;
 
@@ -43,12 +63,27 @@ export const StyledCard = styled.div`
   }
 `;
 
-export const StyledSelect = styled.select`
-  padding: 0.35rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-  width: 150px;
-  @media (max-width: 700px) {
-    width: 160px;
-  }
+export const StyledGroupCard = styled(StyledCard)`
+  cursor: pointer;
+`;
+
+export const StyledGroupName = styled.h4`
+  margin: 0 0 0.5rem;
+`;
+
+export const StyledGroupMembers = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const StyledGroupMember = styled.li`
+  margin-bottom: 0.25rem;
+`;
+
+export const StyledTitleLink = styled.p`
+  margin: 0;
+  padding: 0;
+  color: #0077cc;
+  cursor: pointer;
 `;

@@ -1,94 +1,19 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import { GroupType } from '../../../domain/groups';
+import {
+  StyledButton,
+  StyledCard,
+  StyledForm,
+  StyledGroupCard,
+  StyledGroupMember,
+  StyledGroupMembers,
+  StyledGroupName,
+  StyledInput,
+  StyledSelectOption,
+  StyledSelect,
+  StyledTitleLink,
+} from './styled-add-member-components';
 
-const Form = styled.form`
-  display: flex;
-  width: 100%;
-  max-width: 600px;
-
-  @media (max-width: 700px) {
-    min-width: 250px;
-  }
-`;
-
-const StyledSelect = styled.select`
-  padding: 0.35rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-  width: 150px;
-  @media (max-width: 700px) {
-    width: 160px;
-  }
-`;
-
-const SelectOption = styled.option`
-  font-size: 16px;
-  background: #fff;
-  position: relative;
-  &:hover {
-    background: #e0f2f7;
-  }
-`;
-
-const Input = styled.input`
-  padding: 0.4rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-`;
-
-const Button = styled.button`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  background-color: #0077cc;
-  color: #fff;
-  cursor: pointer;
-`;
-
-const Card = styled.div`
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  padding: 1rem;
-  width: 700px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 700px) {
-    width: 100%;
-    flex-direction: column;
-    align-items: start;
-    gap: 20px;
-  }
-`;
-
-const GroupCard = styled(Card)`
-  cursor: pointer;
-`;
-
-const GroupName = styled.h4`
-  margin: 0 0 0.5rem;
-`;
-
-const GroupMembers = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const GroupMember = styled.li`
-  margin-bottom: 0.25rem;
-`;
-
-const StyledTitleLink = styled.p`
-  margin: 0;
-  padding: 0;
-  color: #0077cc;
-  cursor: pointer;
-`;
 type AddMemberFormProps = {
   groupsState: GroupType[];
   handleUpdateGroups: (groupsState: GroupType[]) => void;
@@ -130,9 +55,9 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
 
   return (
     <div data-testid="add-member-component">
-      <Form onSubmit={handleSubmit}>
-        <Card>
-          <Input
+      <StyledForm onSubmit={handleSubmit}>
+        <StyledCard>
+          <StyledInput
             data-testid="add-member-name"
             type="text"
             placeholder="Nombre"
@@ -145,11 +70,11 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
             data-testid="add-member-select"
             onChange={handleGroupSelect}
           >
-            <SelectOption value="">Select Group</SelectOption>
+            <StyledSelectOption value="">Select Group</StyledSelectOption>
             {groupsState.map((group, index) => (
-              <SelectOption key={group.name} value={index}>
+              <StyledSelectOption key={group.name} value={index}>
                 {group.name}
-              </SelectOption>
+              </StyledSelectOption>
             ))}
           </StyledSelect>
 
@@ -160,25 +85,25 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
             Ver miembros
           </StyledTitleLink>
 
-          <Button
+          <StyledButton
             data-testid="add-member-button"
             type="submit"
             className="add-button"
           >
             +
-          </Button>
-        </Card>
+          </StyledButton>
+        </StyledCard>
         {shownMembers && selectedGroup && (
-          <GroupCard data-testid="add-member-group-component">
-            <GroupName>{selectedGroup.name}</GroupName>
-            <GroupMembers data-testid="group-member">
+          <StyledGroupCard data-testid="add-member-group-component">
+            <StyledGroupName>{selectedGroup.name}</StyledGroupName>
+            <StyledGroupMembers data-testid="group-member">
               {selectedGroup.members.map((member) => (
-                <GroupMember key={member}>{member}</GroupMember>
+                <StyledGroupMember key={member}>{member}</StyledGroupMember>
               ))}
-            </GroupMembers>
-          </GroupCard>
+            </StyledGroupMembers>
+          </StyledGroupCard>
         )}
-      </Form>
+      </StyledForm>
     </div>
   );
 };

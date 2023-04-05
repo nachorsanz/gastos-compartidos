@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom/extend-expect';
-import UserPanel from './user-panel';
+import UserPanel from './user-panel-component';
 import { render } from '@testing-library/react';
 import {
   createGroups,
