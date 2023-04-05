@@ -78,4 +78,31 @@ describe('Mock Factory', () => {
       },
     ]);
   });
+
+  it('creates a mock groups', () => {
+    const groups = createGroups();
+    expect(groups).toEqual([
+      {
+        name: 'Grupo 1',
+        members: ['Juan', 'María', 'Pedro'],
+        balance: 100,
+        createdAt: '2022-04-01',
+        state: 'cerrado',
+      },
+      {
+        name: 'Grupo 2',
+        members: ['Laura', 'Carlos', 'Ana'],
+        balance: -50,
+        createdAt: '2022-03-15',
+        state: 'abierto',
+      },
+      {
+        name: 'Grupo 3',
+        members: ['Marta', 'Luis', 'Sara'],
+        balance: 0,
+        createdAt: '2022-02-28',
+        state: 'cerrado',
+      },
+    ])
+  })
 });
