@@ -4,13 +4,26 @@ import { GroupType } from '../../../domain/groups';
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+
+  @media (max-width: 700px) {
+    min-width: 250px;
+  }
 `;
 
 const StyledSelect = styled.select`
   padding: 0.4rem;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
+`;
+
+const SelectOption = styled.option`
+  font-size: 16px;
+  background: #fff;
+  &:hover {
+    background: #e0f2f7;
+  }
 `;
 
 const Input = styled.input`
@@ -34,10 +47,18 @@ const Card = styled.div`
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   padding: 1rem;
+  max-width: 600px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
 `;
 
 const GroupCard = styled(Card)`
@@ -61,9 +82,9 @@ const GroupMember = styled.li`
 const StyledTitleLink = styled.p`
   margin: 0;
   padding: 0;
+  color: #0077cc;
   cursor: pointer;
 `;
-
 type AddMemberFormProps = {
   groupsState: GroupType[];
   handleUpdateGroups: (groupsState: GroupType[]) => void;
@@ -116,16 +137,18 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
           />
 
           <StyledSelect
+            id="add-member-select"
             data-testid="add-member-select"
             onChange={handleGroupSelect}
           >
-            <option value="">Select Group</option>
+            <SelectOption value="">Select Group</SelectOption>
             {groupsState.map((group, index) => (
-              <option key={group.name} value={index}>
+              <SelectOption key={group.name} value={index}>
                 {group.name}
-              </option>
+              </SelectOption>
             ))}
           </StyledSelect>
+
           <StyledTitleLink
             data-testid="add-member-link"
             onClick={toggleShownMembers}

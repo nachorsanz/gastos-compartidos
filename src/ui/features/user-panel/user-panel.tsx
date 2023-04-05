@@ -5,22 +5,19 @@ import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
 import { GroupType } from '../../../domain/groups';
 
-const StyledGroupComponent = styled.div`
+const StyledUserPanel = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 10px;
+  padding: 24px;
   width: 100%;
-  div {
-    font-size: 16px;
-    font-weight: bold;
-  }
-`;
 
-const StyledGroupComponentContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
+  @media (max-width: 700px) {
+    min-width: 100%;
+  }
 `;
 
 const StyledItem = styled.div`
@@ -28,19 +25,20 @@ const StyledItem = styled.div`
   justify-content: space-between;
   height: 90px;
   align-items: center;
+  font-size: 20px;
+  font-weight: bold;
   padding: 10px;
-  background-color: #f5f5f5;
-  border: 1px solid #000;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
 `;
+
 const StyledTitle = styled.h1`
   font-size: 3rem;
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 16px;
 `;
+
 const StyledButton = styled.button`
-  width: 100%;
+  max-width: 800px;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   border: none;
@@ -48,13 +46,17 @@ const StyledButton = styled.button`
   color: #fff;
   cursor: pointer;
   margin-bottom: 30px;
-`;
-const StyledSelect = styled.select`
-  padding: 0.4rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
+const StyledSelect = styled.select`
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  margin-bottom: 16px;
+`;
 type UserPanelProps = {
   payments: PaymentGroupType;
   groups: GroupType[];
@@ -77,44 +79,39 @@ const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
   return (
     <div data-testid="user-panel">
       <StyledTitle>Hi, {user?.split('@')[0]}!</StyledTitle>
-      <StyledGroupComponent>
-        <StyledGroupComponentContainer>
-          <StyledItem>Estás en {groups.length} grupos</StyledItem>
+      <StyledItem>
+        Total:{' '}
+        {payments.reduce((acc, payment) => {
+          return acc + payment.amount;
+        }, 0)}{' '}
+        €
+      </StyledItem>
 
-          <StyledItem>
-            Total:{' '}
-            {payments.reduce((acc, payment) => {
-              return acc + payment.amount;
-            }, 0)}{' '}
-            €
-          </StyledItem>
-        </StyledGroupComponentContainer>
-        <StyledButton onClick={handleShowPanel}>
-          {showPanel ? 'Cerrar' : 'Ampliar'}
-        </StyledButton>
+      <StyledButton onClick={handleShowPanel}>
+        {showPanel ? 'Cerrar' : 'Ampliar Informacion'}
+      </StyledButton>
 
-        {showPanel && (
-          <>
-            <StyledSelect onChange={handleGroupSelect}>
-              <option value="">Select Group</option>
-              {groups.map((group, index) => (
-                <option key={group.name} value={index}>
-                  {group.name}
-                </option>
-              ))}
-            </StyledSelect>
-            <GroupPanel
-              payments={
-                !selectedGroup
-                  ? payments
-                  : payments.filter(
-                      (payment) => payment.group === selectedGroup.name,
-                    )
-              }
-            />
-          </>
-        )}
-      </StyledGroupComponent>
+      {showPanel && (
+        <>
+          <StyledSelect onChange={handleGroupSelect}>
+            <option value="">Select Group</option>
+            {groups.map((group, index) => (
+              <option key={group.name} value={index}>
+                {group.name}
+              </option>
+            ))}
+          </StyledSelect>
+          <GroupPanel
+            payments={
+              !selectedGroup
+                ? payments
+                : payments.filter(
+                    (payment) => payment.group === selectedGroup.name,
+                  )
+            }
+          />
+        </>
+      )}
     </div>
   );
 };

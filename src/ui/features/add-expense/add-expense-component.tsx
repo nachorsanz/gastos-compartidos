@@ -3,11 +3,14 @@ import styled from '@emotion/styled';
 import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
 import { GroupType } from '../../../domain/groups';
-import { convertDateFormat } from '../../../domain/utils';
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  @media (max-width: 700px) {
+    min-width: 250px;
+  }
 `;
 
 const Input = styled.input`
@@ -33,8 +36,15 @@ const Card = styled.div`
   padding: 1rem;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
 `;
 
 const StyledSelect = styled.select`

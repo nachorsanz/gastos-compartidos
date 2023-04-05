@@ -9,6 +9,13 @@ const LoginPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: rgb(3, 36, 0);
+  background: linear-gradient(
+    357deg,
+    rgba(3, 36, 0, 1) 0%,
+    rgba(9, 121, 83, 1) 4%,
+    rgba(0, 212, 255, 1) 100%
+  );
 `;
 
 const LoginPage = () => {

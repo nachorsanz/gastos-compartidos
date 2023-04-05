@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Home from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/Login';
+import './reset.css';
 
 import { AppProvider } from './config-adapter/user-context-provider';
 const router = createBrowserRouter([
