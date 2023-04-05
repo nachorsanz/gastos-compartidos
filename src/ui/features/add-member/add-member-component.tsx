@@ -7,7 +7,6 @@ import {
   StyledGroupCard,
   StyledGroupMember,
   StyledGroupMembers,
-  StyledGroupName,
   StyledInput,
   StyledSelectOption,
   StyledSelect,
@@ -95,7 +94,6 @@ const AddMemberForm: React.FC<AddMemberFormProps> = ({
         </StyledCard>
         {shownMembers && selectedGroup && (
           <StyledGroupCard data-testid="add-member-group-component">
-            <StyledGroupName>{selectedGroup.name}</StyledGroupName>
             <StyledGroupMembers data-testid="group-member">
               {selectedGroup.members.map((member) => (
                 <StyledGroupMember key={member}>{member}</StyledGroupMember>

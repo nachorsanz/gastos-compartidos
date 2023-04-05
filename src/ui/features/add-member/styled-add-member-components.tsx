@@ -67,9 +67,6 @@ export const StyledGroupCard = styled(StyledCard)`
   cursor: pointer;
 `;
 
-export const StyledGroupName = styled.h4`
-  margin: 0 0 0.5rem;
-`;
 
 export const StyledGroupMembers = styled.ul`
   list-style: none;
