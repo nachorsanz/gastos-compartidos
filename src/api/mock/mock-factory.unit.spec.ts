@@ -8,7 +8,7 @@ describe('Mock Factory', () => {
       id: '1',
       name: 'John Doe',
       email: 'johndoe@mail.com',
-      group: ['1'],
+      group: ['Grupo 1'],
     });
   });
 
@@ -17,15 +17,15 @@ describe('Mock Factory', () => {
     expect(users).toEqual([
       {
         id: '1',
-        name: 'johndoe@mail.com',
-        email: '',
-        group: ['1'],
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        group: ['Grupo 1'],
       },
       {
         id: '2',
         name: 'Jane Doe',
         email: 'janedoe@mail.com',
-        group: ['1'],
+        group: ['Grupo 2'],
       },
     ]);
   });

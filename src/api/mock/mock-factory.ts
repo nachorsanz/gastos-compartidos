@@ -18,8 +18,8 @@ export const createMockUsersGroup = (): UserGroupType => {
   return [
     {
       id: '1',
-      name: 'johndoe@mail.com',
-      email: '',
+      name: 'John Doe',
+      email: 'johndoe@mail.com',
       group: ['Grupo 1'],
     },
     {
