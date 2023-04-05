@@ -44,7 +44,7 @@ jobs:
       - uses: nelonoel/branch-name@v1.0.1
       - uses: jsmrcaga/action-netlify-deploy@master
         with:
-          build_directory: build
+          build_directory: dist
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ID }}
           NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
