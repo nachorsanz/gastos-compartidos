@@ -4,20 +4,14 @@ import GroupPanel from '../group-panel/group-panel-component';
 import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
 import { GroupType } from '../../../domain/groups';
+import { calculateTotalBalance } from '../../../common/utils';
 
-const StyledUserPanel = styled.div`
+const StyledUserContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  background-color: #f1f1f1;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border-radius: 10px;
-  padding: 24px;
-  width: 100%;
+  justify-content: center;
 
-  @media (max-width: 700px) {
-    min-width: 100%;
-  }
+  gap: 30px;
 `;
 
 const StyledItem = styled.div`
@@ -45,7 +39,7 @@ const StyledButton = styled.button`
   background-color: #0077cc;
   color: #fff;
   cursor: pointer;
-  margin-bottom: 30px;
+  margin-bottom: 17.5px;
   font-size: 20px;
   font-weight: bold;
 `;
@@ -79,20 +73,13 @@ const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
   return (
     <div data-testid="user-panel">
       <StyledTitle>Hi, {user?.split('@')[0]}!</StyledTitle>
-      <StyledItem>
-        Total:{' '}
-        {payments.reduce((acc, payment) => {
-          return acc + payment.amount;
-        }, 0)}{' '}
-        €
-      </StyledItem>
+      <StyledItem>Total: {calculateTotalBalance(payments)} €</StyledItem>
+      <StyledUserContainer>
+        <StyledButton onClick={handleShowPanel}>
+          {showPanel ? 'Cerrar' : 'Ampliar Informacion'}
+        </StyledButton>
 
-      <StyledButton onClick={handleShowPanel}>
-        {showPanel ? 'Cerrar' : 'Ampliar Informacion'}
-      </StyledButton>
-
-      {showPanel && (
-        <>
+        {showPanel && (
           <StyledSelect onChange={handleGroupSelect}>
             <option value="">Select Group</option>
             {groups.map((group, index) => (
@@ -101,16 +88,18 @@ const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
               </option>
             ))}
           </StyledSelect>
-          <GroupPanel
-            payments={
-              !selectedGroup
-                ? payments
-                : payments.filter(
-                    (payment) => payment.group === selectedGroup.name,
-                  )
-            }
-          />
-        </>
+        )}
+      </StyledUserContainer>
+      {showPanel && (
+        <GroupPanel
+          payments={
+            !selectedGroup
+              ? payments
+              : payments.filter(
+                  (payment) => payment.group === selectedGroup.name,
+                )
+          }
+        />
       )}
     </div>
   );

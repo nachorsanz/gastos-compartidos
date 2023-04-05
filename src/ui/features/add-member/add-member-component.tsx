@@ -13,14 +13,19 @@ const Form = styled.form`
 `;
 
 const StyledSelect = styled.select`
-  padding: 0.4rem;
+  padding: 0.35rem;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
+  width: 150px;
+  @media (max-width: 700px) {
+    width: 160px;
+  }
 `;
 
 const SelectOption = styled.option`
   font-size: 16px;
   background: #fff;
+  position: relative;
   &:hover {
     background: #e0f2f7;
   }
@@ -47,8 +52,7 @@ const Card = styled.div`
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   padding: 1rem;
-  max-width: 600px;
-
+  width: 700px;
   display: flex;
   justify-content: space-between;
   align-items: center;

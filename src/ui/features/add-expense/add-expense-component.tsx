@@ -1,57 +1,14 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import { PaymentGroupType } from '../../../domain/payments';
 import { useAppContext } from '../../../config-adapter/user-context-provider';
 import { GroupType } from '../../../domain/groups';
-
-const Form = styled.form`
-  display: flex;
-  width: 100%;
-  max-width: 600px;
-  @media (max-width: 700px) {
-    min-width: 250px;
-  }
-`;
-
-const Input = styled.input`
-  padding: 0.4rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-`;
-
-const Button = styled.button`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  background-color: #0077cc;
-  color: #fff;
-  cursor: pointer;
-`;
-
-const Card = styled.div`
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  padding: 1rem;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 700px) {
-    width: 100%;
-    flex-direction: column;
-    align-items: start;
-    gap: 20px;
-  }
-`;
-
-const StyledSelect = styled.select`
-  padding: 0.4rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-`;
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  StyledSelect,
+} from './styled-add-expense-components';
 
 type AddExpenseFormProps = {
   handleNewPayment: (
@@ -83,7 +40,7 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleNewPayment(
-      user ?? '',
+      user?.split('@')[0] ?? '',
       selectedGroup?.name ?? '',
       amount,
       description,

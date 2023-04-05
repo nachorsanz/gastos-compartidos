@@ -35,7 +35,7 @@ export const createPayment = (): PaymentType => {
     description: 'Payment 1',
     amount: 100,
     createdAt: '4/5/2023',
-    state: 'cerrado',
+    state: 'finalizado',
   };
 };
 
@@ -47,13 +47,13 @@ export const createMockPaymentsGroup = (): PaymentGroupType => {
       description: 'Payment 1',
       amount: 100,
       createdAt: '4/5/2023',
-      state: 'cerrado',
+      state: 'finalizado',
     },
     {
       userId: '2',
       group: 'Grupo 1',
       description: 'Payment 2',
-      amount: 200,
+      amount: 500,
       createdAt: '5/4/2023',
       state: 'pendiente',
     },
@@ -63,7 +63,7 @@ export const createMockPaymentsGroup = (): PaymentGroupType => {
       description: 'Payment 3',
       amount: 300,
       createdAt: '4/5/2023',
-      state: 'cerrado',
+      state: 'finalizado',
     },
   ];
 };

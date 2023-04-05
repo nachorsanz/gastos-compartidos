@@ -29,21 +29,39 @@ const Date = styled.div`
   color: #999;
 `;
 
+const StyledPaymentState = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-radius: 4px;
+`;
+
 const GroupPanelItem: React.FC<PaymentType> = ({
   userId,
   group,
   amount,
   description,
+  state,
   createdAt,
 }) => {
   return (
     <StyledGroupPanelItem data-testid="group-panel-item">
       <UserInfo>
-        Pagado por: {userId} en {group} -{' '}
+        Creado por: {userId} en {group}
       </UserInfo>
-      <Amount>Importe: {amount} - </Amount>
-      <Description>Descripción: {description} - </Description>
+      <Amount>
+        Importe: {state === 'finalizado' ? amount : `-${amount}`}{' '}
+      </Amount>
+      <Description>Descripción: {description} </Description>
       <Date>Fecha: {createdAt}</Date>
+      <StyledPaymentState
+        style={{
+          color: state === 'finalizado' ? 'green' : 'red',
+        }}
+      >
+        ·
+      </StyledPaymentState>
     </StyledGroupPanelItem>
   );
 };

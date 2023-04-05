@@ -8,6 +8,9 @@ import WrapperTestingProvider from '../../../config-adapter/wrapper-testing-prov
 import React from 'react';
 
 describe('Home', () => {
+  const calculateTotalBalance = jest.fn();
+  const sortedPayments = jest.fn();
+
   it('should render', () => {
     const { getByTestId } = render(
       <WrapperTestingProvider>

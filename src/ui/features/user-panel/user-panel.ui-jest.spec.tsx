@@ -15,6 +15,8 @@ describe('Home', () => {
   it('should render', () => {
     const payments = createMockPaymentsGroup();
     const groups = createGroups();
+    const calculateTotalBalance = jest.fn();
+    const sortedPayments = jest.fn();
     const { getByTestId } = render(
       <WrapperTestingProvider>
         <UserPanel payments={payments} groups={groups} />
