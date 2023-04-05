@@ -37,7 +37,7 @@ const GroupPanelItem: React.FC<PaymentType> = ({
   createdAt,
 }) => {
   return (
-    <StyledGroupPanelItem>
+    <StyledGroupPanelItem data-testid="group-panel-item">
       <UserInfo>
         Pagado por: {userId} en {group} -{' '}
       </UserInfo>

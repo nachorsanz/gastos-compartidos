@@ -26,6 +26,7 @@ const GroupPanel: React.FC<GroupPanelProps> = ({ payments }) => {
       <StyledGroupPanel data-testid="group-panel-list">
         {sortedPayments.map((payment, index) => (
           <GroupPanelItem
+            data-testid="group-panel-item"
             key={`payment-${index}`}
             userId={payment.userId}
             state={payment.state}
