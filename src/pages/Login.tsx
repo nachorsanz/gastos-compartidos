@@ -21,9 +21,9 @@ const StyledLoginPageContainer = styled.div`
 const LoginPage = () => {
   const navigate = useNavigate();
   const { setUser, user } = useAppContext();
-  const onLogin = (email: string, password: string) => {
-    setUser(email);
-    localStorage.setItem('user', email);
+  const onLogin = (name: string) => {
+    setUser(name);
+    localStorage.setItem('user', name);
     navigate('/home');
   };
 

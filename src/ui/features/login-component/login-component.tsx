@@ -10,16 +10,16 @@ import {
 } from './styled-login-components';
 
 interface LoginProps {
-  onLogin: (email: string, password: string) => void;
+  onLogin: (name: string) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [name, setName] = useState<string>('');
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onLogin(email, password);
+    onLogin(name);
   };
 
   return (
@@ -29,19 +29,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       </StyledLogoContainer>
       <StyledLoginForm onSubmit={handleSubmit}>
         <StyledInput
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Introduce tu nombre"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <StyledInput
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+     
         <StyledSubmitButton data-testid="login-button" type="submit">
-          Log in
+          Entrar
         </StyledSubmitButton>
       </StyledLoginForm>
     </StyledLoginContainer>

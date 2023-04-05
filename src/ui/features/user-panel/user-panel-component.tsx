@@ -20,7 +20,7 @@ type UserPanelProps = {
 const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
   const { user } = useAppContext();
 
-  const [showPanel, setShowPanel] = useState<boolean>(false);
+  const [showPanel, setShowPanel] = useState<boolean>(true);
   const [selectedGroup, setSelectedGroup] = useState<GroupType>();
   const handleGroupSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const groupIndex = parseInt(e.target.value);
@@ -33,7 +33,7 @@ const UserPanel: React.FC<UserPanelProps> = ({ payments, groups }) => {
 
   return (
     <div data-testid="user-panel">
-      <StyledTitle>Hi, {user?.split('@')[0]}!</StyledTitle>
+      <StyledTitle>Hi, {user}!</StyledTitle>
       <StyledItem>Total: {calculateTotalBalance(payments)} €</StyledItem>
       <StyledUserContainer>
         <StyledButton onClick={handleShowPanel}>

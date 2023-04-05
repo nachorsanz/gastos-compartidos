@@ -40,7 +40,7 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleNewPayment(
-      user?.split('@')[0] ?? '',
+      user ?? '',
       selectedGroup?.name ?? '',
       amount,
       description,
