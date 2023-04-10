@@ -18,31 +18,21 @@ import {
   StyledMain,
 } from './styled-layout-components';
 
-const Layout: React.FC = () => {
-  const [payments, setPayments] = useState<PaymentGroupType>(
-    createMockPaymentsGroup(),
-  );
-
-  const [groupsState, setGroupsState] = useState<GroupType[]>([
-    ...createGroups(),
-  ]);
-
-  const handleUpdateGroups = (groupsState: GroupType[]) => {
-    setGroupsState([...groupsState]);
-  };
-
-  const handleNewPayment = (
+type LayoutProps = {
+  payments: PaymentGroupType;
+  groups: GroupType[];
+  handleNewPayment: (
     userId: string,
     group: string,
     amount: number,
     description: string,
     createdAt: string,
-  ) => {
-    setPayments([
-      ...payments,
-      { userId, group, amount, description, createdAt, state: 'pendiente' },
-    ]);
-  };
+  ) => void;
+  handleUpdateGroups: (groupsState: GroupType[]) => void;
+}
+
+const Layout: React.FC<LayoutProps> = ({...props}) => {
+  const {payments, groups, handleNewPayment, handleUpdateGroups} = props
 
   return (
     <StyledLayoutContainer data-testid="layout">
@@ -51,7 +41,7 @@ const Layout: React.FC = () => {
         <StyledLogoText>Gastos Compartidos</StyledLogoText>
       </StyledHeader>
       <StyledMain>
-        <UserPanel payments={payments} groups={groupsState} />
+        <UserPanel payments={payments} groups={groups} />
         <AccordionWrapper
           title="Añadir Gastos"
           data-testid="accordion-expense"
@@ -59,7 +49,7 @@ const Layout: React.FC = () => {
             <AddExpenseForm
               handleNewPayment={handleNewPayment}
               payments={payments}
-              groups={groupsState}
+              groups={groups}
             />
           }
         />
@@ -68,7 +58,7 @@ const Layout: React.FC = () => {
           data-testid="accordion-member"
           children={
             <AddMemberForm
-              groupsState={groupsState}
+              groupsState={groups}
               handleUpdateGroups={handleUpdateGroups}
             />
           }

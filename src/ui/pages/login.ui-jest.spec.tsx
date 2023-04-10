@@ -4,7 +4,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import LoginPage from './Login';
 import { render, fireEvent, screen } from '@testing-library/react';
-import WrapperTestingProvider from '../config-adapter/wrapper-testing-provider';
+import WrapperTestingProvider from '../../config-adapter/wrapper-testing-provider';
 
 const navigate = jest.fn();
 

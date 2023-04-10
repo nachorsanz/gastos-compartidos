@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import Login from '../ui/features/login-component/login-component';
+import Login from '../features/login-component/login-component';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../config-adapter/user-context-provider';
+import { useAppContext } from '../../config-adapter/user-context-provider';
 
 const StyledLoginPageContainer = styled.div`
   display: flex;
@@ -31,7 +31,6 @@ const LoginPage = () => {
     if (user) {
       navigate('/home');
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
