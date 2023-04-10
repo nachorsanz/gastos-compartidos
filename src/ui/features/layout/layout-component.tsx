@@ -29,10 +29,10 @@ type LayoutProps = {
     createdAt: string,
   ) => void;
   handleUpdateGroups: (groupsState: GroupType[]) => void;
-}
+};
 
-const Layout: React.FC<LayoutProps> = ({...props}) => {
-  const {payments, groups, handleNewPayment, handleUpdateGroups} = props
+const Layout: React.FC<LayoutProps> = ({ ...props }) => {
+  const { payments, groups, handleNewPayment, handleUpdateGroups } = props;
 
   return (
     <StyledLayoutContainer data-testid="layout">

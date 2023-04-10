@@ -6,19 +6,21 @@ import Layout from './layout-component';
 import { render, act } from '@testing-library/react';
 import WrapperTestingProvider from '../../../config-adapter/wrapper-testing-provider';
 import React from 'react';
-import { createGroups, createMockPaymentsGroup } from '../../../api/mock/mock-factory';
+import {
+  createGroups,
+  createMockPaymentsGroup,
+} from '../../../api/mock/mock-factory';
 
 describe('Layout', () => {
   const payments = createMockPaymentsGroup();
   const groups = createGroups();
-  const handleNewPayment = jest.fn()
-  const handleUpdateGroups = jest.fn()
-
+  const handleNewPayment = jest.fn();
+  const handleUpdateGroups = jest.fn();
 
   it('should render', () => {
     const { getByTestId } = render(
       <WrapperTestingProvider>
-        <Layout 
+        <Layout
           payments={payments}
           groups={groups}
           handleNewPayment={handleNewPayment}
@@ -32,7 +34,7 @@ describe('Layout', () => {
   it('should render user panel', () => {
     const { getByTestId } = render(
       <WrapperTestingProvider>
-        <Layout 
+        <Layout
           payments={payments}
           groups={groups}
           handleNewPayment={handleNewPayment}

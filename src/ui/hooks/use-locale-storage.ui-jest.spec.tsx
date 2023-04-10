@@ -16,13 +16,11 @@ describe('useLocalStorage', () => {
   });
 
   it('should set data to localStorage', () => {
-    
-    const { result } = renderHook(() => 
-    useLocalStorage('testKey'));
+    const { result } = renderHook(() => useLocalStorage('testKey'));
     const [, setData] = result.current;
     if (typeof setData === 'function') {
-        act(() => setData('testValue'));
-      }
+      act(() => setData('testValue'));
+    }
     expect(localStorage.getItem('testKey')).toBe('"testValue"');
     expect(result.current[0]).toBe('testValue');
   });
@@ -38,8 +36,8 @@ describe('useLocalStorage', () => {
     const { result } = renderHook(() => useLocalStorage('testKey'));
     const [, setData] = result.current;
     if (typeof setData === 'function') {
-        act(() => setData('newValue'));
-      }
+      act(() => setData('newValue'));
+    }
     expect(localStorage.getItem('testKey')).toBe('"newValue"');
     expect(result.current[0]).toBe('newValue');
   });

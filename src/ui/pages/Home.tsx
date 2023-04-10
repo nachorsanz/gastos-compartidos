@@ -1,7 +1,10 @@
-import React, {useState}from 'react';
+import React, { useState } from 'react';
 import Layout from '../features/layout/layout-component';
 import { PaymentGroupType } from '../../domain/payments';
-import { createGroups, createMockPaymentsGroup } from '../../api/mock/mock-factory';
+import {
+  createGroups,
+  createMockPaymentsGroup,
+} from '../../api/mock/mock-factory';
 import { GroupType } from '../../domain/groups';
 
 const Home = () => {
@@ -9,9 +12,7 @@ const Home = () => {
     createMockPaymentsGroup(),
   );
 
-  const [groups, setGroups] = useState<GroupType[]>([
-    ...createGroups(),
-  ]);
+  const [groups, setGroups] = useState<GroupType[]>([...createGroups()]);
 
   const handleUpdateGroups = (groupsState: GroupType[]) => {
     setGroups([...groupsState]);
@@ -32,7 +33,7 @@ const Home = () => {
 
   return (
     <div data-testid="home">
-      <Layout 
+      <Layout
         payments={payments}
         groups={groups}
         handleNewPayment={handleNewPayment}
