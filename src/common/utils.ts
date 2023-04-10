@@ -8,7 +8,6 @@ export const convertDateFormat = (dateString: string): string => {
 export const calculateTotalBalance = (paymentArray: PaymentType[]): number => {
   let total = 0;
   const sortedPayments = sortPayments(paymentArray);
-  console.log(sortedPayments);
 
   sortedPayments.forEach((payment) => {
     if (payment.state === 'pendiente') {

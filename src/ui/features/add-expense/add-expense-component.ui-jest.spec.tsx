@@ -28,7 +28,7 @@ it('should render the component correctly', () => {
   expect(component).toBeInTheDocument();
 });
 
-it.skip('should call handleNewPayment with correct arguments when form is submitted', () => {
+it('should call handleNewPayment with correct arguments when form is submitted', () => {
   const { getByTestId } = render(
     <WrapperTestingProvider>
       <AddExpenseForm
@@ -53,6 +53,6 @@ it.skip('should call handleNewPayment with correct arguments when form is submit
     'Grupo 1',
     10,
     'Test description',
-    '4/5/2023',
+    new Date().toLocaleDateString(),
   );
 });
